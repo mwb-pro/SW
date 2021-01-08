@@ -1,13 +1,24 @@
 package com.sw.android.logic
 
 import androidx.lifecycle.liveData
+import com.sw.android.logic.dao.PlaceDao.getSavedPlace
+import com.sw.android.logic.dao.PlaceDao.savePlace
+
+import com.sw.android.logic.dao.PlaceDao
+import com.sw.android.logic.model.Place
+import com.sw.android.logic.model.Weather
 import com.sw.android.logic.network.SunnyWeatherNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import java.lang.Exception
+import java.lang.RuntimeException
 import kotlin.coroutines.CoroutineContext
 
-object Reponsitory {
+object Repository {
+    fun savePlace(place: Place)=PlaceDao.savePlace(place)
+    fun getSavedPlace()=PlaceDao.getSavedPlace()
+    fun isPlaceSaved()=PlaceDao.isPlaceSaved()
     fun searchPlaces(query: String) = fire(Dispatchers.IO) {
         val placeResponse = SunnyWeatherNetwork.searchPlaces(query)
         if (placeResponse.status == "ok") {
@@ -51,4 +62,18 @@ object Reponsitory {
                 }
                 emit(result)
             }
+//fun searchPlaces(query: String) = liveData(Dispatchers.IO) {
+//    val  result=try {
+//        val placeResponse=SunnyWeatherNetwork.searchPlaces(query)
+//        if (placeResponse.status=="ok"){
+//            val  places=placeResponse.places
+//            Result.success(places)
+//        }else{
+//            Result.failure(RuntimeException("response status is${placeResponse.status}"))
+//        }
+//    }catch (e:Exception){
+//        Result.failure<List<com.sw.android.logic.model.Place>>(e)
+//    }
+//   emit(result)
+//}
 }

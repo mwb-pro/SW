@@ -1,10 +1,10 @@
-package com.unnyweather.android.ui.weather
+package com.sw.android.ui.weather
 
 
 
 import androidx.lifecycle.*
-import com.unnyweather.android.logic.Repository
-import com.unnyweather.android.logic.model.Location
+import com.sw.android.logic.model.Location
+import com.sw.android.logic.Repository
 
 class WeatherViewModel : ViewModel() {
 

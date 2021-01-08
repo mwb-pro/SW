@@ -1,4 +1,4 @@
-package com.unnyweather.android.logic.model;
+package com.sw.android.logic.model;
 
 import com.google.gson.annotations.SerializedName;
 

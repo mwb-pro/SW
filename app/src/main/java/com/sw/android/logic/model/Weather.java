@@ -1,4 +1,4 @@
-package com.unnyweather.android.logic.model;
+package com.sw.android.logic.model;
 
 public class Weather {
     RealtimeResponse.Realtime realtime;

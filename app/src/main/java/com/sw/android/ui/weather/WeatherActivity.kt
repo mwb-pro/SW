@@ -1,4 +1,4 @@
-package com.unnyweather.android.ui.weather
+package com.sw.android.ui.weather
 
 import android.content.Context
 import android.graphics.Color
@@ -15,14 +15,14 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.unnyweather.android.logic.model.getSky
-import com.unnyweather.android.R
-import com.unnyweather.android.logic.model.Weather
-
+import com.sw.android.R
+import com.sw.android.logic.model.Weather
+import com.sw.android.logic.model.getSky
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.forecast.*
 import kotlinx.android.synthetic.main.life_index.*
 import kotlinx.android.synthetic.main.now.*
+import kotlinx.android.synthetic.main.place_item.placeName
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -123,5 +123,4 @@ class WeatherActivity : AppCompatActivity() {
         carWashingText.text = lifeIndex.carWashing[0].desc
         weatherLayout.visibility = View.VISIBLE
     }
-
 }

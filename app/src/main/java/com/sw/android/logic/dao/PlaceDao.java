@@ -1,11 +1,33 @@
-package com.unnyweather.android.logic.dao;
+package com.sw.android.logic.dao;
 
 
-import com.unnyweather.android.logic.model.Place;
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.sw.android.SunnyWeatherApplication;
+import com.sw.android.logic.model.Place;
 
 public class PlaceDao {
-    void savePlace(Place place)
-    {
-        
+   static SharedPreferences sharedPreferences = null;
+   static SharedPreferences.Editor editor;
+
+      public static void savePlace(Place place){
+       editor = sharedPreferences.edit();
+        editor.putString("place", new Gson().toJson(place));
+
     }
+     public static  Place getSavedPlace () {
+        String placeJson = sharedPreferences.getString("place", "");
+        return new Gson().fromJson(placeJson, Place.class);
+    }
+
+     public static   boolean isPlaceSaved () {
+        return sharedPreferences.contains("place");
+    }
+
+        private SharedPreferences sharedPreferences () {
+        return SunnyWeatherApplication.context.getSharedPreferences("sunny_weather", Context.MODE_PRIVATE);
+    }
+
 }
