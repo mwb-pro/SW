@@ -9,25 +9,22 @@ import com.sw.android.SunnyWeatherApplication;
 import com.sw.android.logic.model.Place;
 
 public class PlaceDao {
-   static SharedPreferences sharedPreferences = null;
-   static SharedPreferences.Editor editor;
 
-      public static void savePlace(Place place){
-       editor = sharedPreferences.edit();
-        editor.putString("place", new Gson().toJson(place));
-
+    public   static void savePlace(Place place) {
+        sharedPreferences().edit().putString("place",new  Gson().toJson(place)).commit();
     }
-     public static  Place getSavedPlace () {
-        String placeJson = sharedPreferences.getString("place", "");
+    public   static Place getSavedPlace () {
+        String placeJson = sharedPreferences().getString("place", "");
         return new Gson().fromJson(placeJson, Place.class);
     }
 
-     public static   boolean isPlaceSaved () {
-        return sharedPreferences.contains("place");
+    public    static boolean isPlaceSaved () {
+        return sharedPreferences().contains("place");
     }
 
-        private SharedPreferences sharedPreferences () {
+    private static SharedPreferences sharedPreferences() {
         return SunnyWeatherApplication.context.getSharedPreferences("sunny_weather", Context.MODE_PRIVATE);
     }
+
 
 }
